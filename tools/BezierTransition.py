@@ -54,3 +54,39 @@ def solve_bezier_transition(time:float,
         t -= (x / dx)
     
     return 3 * t * (1 - t) ** 2 * h1y + 3 * t ** 2 * (1 - t) * h2y + t ** 3
+
+
+def precalculate_bezier_factors(start:int,
+                                last:int,
+                                bezier_handles:list|tuple|Bezier) -> list[float]:
+    
+    """Precalculate all Bezier factors for given starting and ending positions
+
+    Calculate progress (y) of Bezier curve for each point of time (x) between
+     `start` and `last` and format them into a list, which can be used as factor
+      for calculating next positions.
+
+    Args:
+        start (int): starting point in time (for example a frame when animation
+         will start). Should be non-negative and smaller than `last`.
+        last (int): last point in time (for example a frame when animation 
+         will end). Should be non-negative and bigger than `start`.
+        bezier_handles (list | tuple | Bezier): coordinates describing control
+         points P1 and P2 for Bezier curve, as [P1x, P1y, P2x, P2y]
+
+    Returns:
+        list (float): list of Bezier curve progressions (y) for each point in
+         time between `start` and `last`
+    """
+
+    factors = []
+    for i in range(start, last+1):
+        inter_result = solve_bezier_transition(i/last, bezier_handles)
+        factors.append(inter_result)
+
+    return factors
+
+    # list comprehension (below) tested with timeit(); no real speed gained
+    # therfore, the actual verbose code left as-is, for readability reasons
+    #
+    # return [solve_bezier_transition(i/last, bezier_handles) for i in range(start, last+1)]
