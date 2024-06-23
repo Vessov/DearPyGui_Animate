@@ -8,20 +8,20 @@ def solve_bezier_transition(time:float,
     """Solve Bezier curve progress using the Newton-Raphson method
 
     Args:
-        time (float): Current time (x of the curve), as a factor of start to end;
-         example 12th frame out of 20 would be 12/20 = 0.6
-        bezier_handles (list | tuple | Bezier): coordinates describing control
-         points P1 and P2 for Bezier curve, as [P1x, P1y, P2x, P2y]
-        below_p0 (bool, optional): allow the progress calculation to return
-         values preceding P0 (`time` factor < 0). Defaults to False
-        over_p3 (bool, optional): allow the progress calculation to return
-         values exceeding P3 (`time` factor > 1). Defaults to False
+        time (float): Current time (x of the curve), as a factor of start to end;\
+            example 12th frame out of 20 would be 12/20 = 0.6
+        bezier_handles (list | tuple | Bezier): coordinates describing control\
+            points P1 and P2 for Bezier curve, as [P1x, P1y, P2x, P2y]
+        below_p0 (bool, optional): allow the progress calculation to return\
+            values preceding P0 (`time` factor < 0). Defaults to False
+        over_p3 (bool, optional): allow the progress calculation to return\
+            values exceeding P3 (`time` factor > 1). Defaults to False
 
     Raises:
-        exc.BezierProgressUnderZero: the `time` factor passed is lower than
-         zero, and the below_p0 flag restricts this calculation
-        exc.BezierProgressOverOne: the `time` factor passed is bigger than
-         one, and the over_p3 flag restricts this calculation
+        exc.BezierProgressUnderZero: the `time` factor passed is lower than\
+            zero, and the below_p0 flag restricts this calculation
+        exc.BezierProgressOverOne: the `time` factor passed is bigger than\
+            one, and the over_p3 flag restricts this calculation
 
     Returns:
         float: Progress of the curve (y) for the given time (x)
@@ -63,20 +63,19 @@ def precalculate_bezier_factors(start:int,
     """Precalculate all Bezier factors for given starting and ending positions
 
     Calculate progress (y) of Bezier curve for each point of time (x) between
-     `start` and `last` and format them into a list, which can be used as factor
-      for calculating next positions.
+    `start` and `last` and format them into a list, which can be used as factor
+    for calculating next positions.
 
     Args:
-        start (int): starting point in time (for example a frame when animation
-         will start). Should be non-negative and smaller than `last`.
-        last (int): last point in time (for example a frame when animation 
-         will end). Should be non-negative and bigger than `start`.
-        bezier_handles (list | tuple | Bezier): coordinates describing control
-         points P1 and P2 for Bezier curve, as [P1x, P1y, P2x, P2y]
+        start (int): starting point in time (for example a frame when animation\
+            will start). Should be non-negative and smaller than `last`.
+        last (int): last point in time (for example a frame when animation\
+            will end). Should be non-negative and bigger than `start`.
+        bezier_handles (list | tuple | Bezier): coordinates describing control\
+            points P1 and P2 for Bezier curve, as [P1x, P1y, P2x, P2y]
 
     Returns:
-        list (float): list of Bezier curve progressions (y) for each point in
-         time between `start` and `last`
+        list (float): list of Bezier curve progressions (y) for each point in time between `start` and `last`
     """
 
     factors = []
