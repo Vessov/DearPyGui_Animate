@@ -3,6 +3,28 @@ def precalculate_positions(start:list|tuple,
                            end:list|tuple,
                            displacement:list,
                            bezier_factors:list) -> list[list[int]]:
+    """Precalculate list of every position that will be used during\
+        the animation. 
+    
+    
+    Important:
+        Every position is described in a standard design way,\
+            where coordinates [0, 0] describe the upper left corner of the\
+            window/screen/viewport, and increse when going right (for X)\
+            or down (for Y)
+
+    Args:
+        start (list | tuple): starting position as [X, Y] cooridnates
+        end (list | tuple): ending position as [X, Y] coordinates
+        displacement (list): difference between every coordinate in starting\
+            and ending position
+        bezier_factors (list): precalculated Bezier Factors for every step\
+            between starting and ending positions
+
+    Returns:
+        list[list[int]]: grouping (list) of [X, Y] coordinates for every step\
+            in the animation
+    """
 
     # calculate delta of movement between starting position
     # and every step based on bezier factors

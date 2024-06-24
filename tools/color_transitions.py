@@ -3,6 +3,20 @@ def precalculate_colors(start:list|tuple,
                         end:list|tuple,
                         displacement:list,
                         bezier_factors:list) -> list[list[int]]:
+    """Precalculate list of every color that will be used during the animation
+
+    Args:
+        start (list | tuple): starting color in RGB/RGBA values
+        end (list | tuple): ending color in RGB/RGBA values
+        displacement (list): difference between every starting and\
+            ending RGB/RGBA value
+        bezier_factors (list): precalculated Bezier Factors for every step\
+            between starting and ending colors
+
+    Returns:
+        list[list[int]]: grouping (list) of RGB/RGBA values for every step\
+            in the animation
+    """
     
     # calculate delta of color between starting color
     # and every step based on bezier factors
